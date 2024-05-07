@@ -1,4 +1,5 @@
 azure:
+  free_disk_space: true
   timeout_minutes: 360
 github:
   branch_name: main
