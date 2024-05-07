@@ -1,2 +1,8 @@
 azure:
   timeout_minutes: 360
+github:
+  branch_name: main
+  tooling_branch_name: main
+conda_build:
+  error_overlinking: true
+conda_forge_output_validation: true
