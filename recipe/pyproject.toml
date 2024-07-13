@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 dynamic = ["version"]
 name = "flash_attn"
 authors = [
-    {name = "Tri Dao", email = "trid@cs.stanford.edu"},
+    {name = "Tri Dao", email = "tri@tridao.me"},
 ]
 description="Flash Attention: Fast and Memory-Efficient Exact Attention"
 classifiers = [
