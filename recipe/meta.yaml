@@ -1,5 +1,5 @@
 {% set name = "flash-attn" %}
-{% set version = "2.5.8" %}
+{% set version = "2.6.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,20 +7,20 @@ package:
 
 source:
   - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/flash_attn-{{ version }}.tar.gz
-    sha256: 2e5b2bcff6d5cff40d494af91ecd1eb3c5b4520a6ce7a0a8b1f9c1ed129fb402
+    sha256: c18d22d27031a761e68ffeb770be17b2b865b04fb9b401aa35372957965d01a3
   # Overwrite with a simpler build script that doesn't try to revend pre-compiled binaries
   - path: pyproject.toml
   - path: setup.py
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
   script_env:
     - MAX_JOBS=$CPU_COUNT
     # Not compiling for 8.0;8.6;8.9;9.0+PTX to keep builds under 6 hours
     - TORCH_CUDA_ARCH_LIST=8.0+PTX
-  skip: true           # [cuda_compiler_version in (undefined, "None")]
-  skip: true           # [not linux]
+  skip: true  # [cuda_compiler_version in (undefined, "None")]
+  skip: true  # [not linux]
   ignore_run_exports_from:
     - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
     - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
