@@ -1,5 +1,5 @@
 {% set name = "flash-attn" %}
-{% set version = "2.6.0.post1" %}
+{% set version = "2.6.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/flash_attn-{{ version }}.tar.gz
-    sha256: b8f930a87c9cb18493b6a97dc0b705f1790a2834f478fbbee2725b3dda2be68e
+    sha256: c18d22d27031a761e68ffeb770be17b2b865b04fb9b401aa35372957965d01a3
   # Overwrite with a simpler build script that doesn't try to revend pre-compiled binaries
   - path: pyproject.toml
   - path: setup.py
