@@ -64,7 +64,8 @@ jobs:
                   /usr/share/dotnet \
                   /usr/share/swift \
                   ; do
-           sudo rsync --stats -a --delete /opt/empty_dir/ $d || true
+           sudo find "${d}" -type f -size +4k -delete || true
+           sudo mv "${d}" "${d%/*}/.deleted.${d##*/}" || true
          done
          sudo apt-get purge -y -f firefox \
                                   google-chrome-stable \
