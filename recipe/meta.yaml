@@ -16,7 +16,7 @@ build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
   script_env:
-    - MAX_JOBS=$CPU_COUNT
+    - MAX_JOBS=1
     # Not compiling for 8.0;8.6;8.9;9.0+PTX to keep builds under 6 hours
     - TORCH_CUDA_ARCH_LIST=8.0+PTX
   skip: true  # [cuda_compiler_version in (undefined, "None")]
