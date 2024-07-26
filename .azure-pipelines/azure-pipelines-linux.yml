@@ -64,7 +64,7 @@ jobs:
                   /usr/share/dotnet \
                   /usr/share/swift \
                   ; do
-           sudo find "${d}" -type f -size +4k -delete || true
+           sudo find "${d}" -type f -size +32k -delete || true
            sudo mv "${d}" "${d%/*}/.deleted.${d##*/}" || true
          done
          sudo apt-get purge -y -f firefox \
