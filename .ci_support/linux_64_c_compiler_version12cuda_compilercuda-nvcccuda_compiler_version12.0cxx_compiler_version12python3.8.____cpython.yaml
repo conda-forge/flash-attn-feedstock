@@ -22,6 +22,9 @@ cxx_compiler_version:
 - '12'
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
+github_actions_labels:
+- cirun-openstack-cpu-large
+- cirun-openstack-gpu-large
 libtorch:
 - '2.3'
 pin_run_as_build:
