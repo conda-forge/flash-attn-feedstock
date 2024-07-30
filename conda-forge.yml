@@ -1,6 +1,6 @@
 azure:
   free_disk_space: true
-  timeout_minutes: 360
+  timeout_minutes: 2160
   settings_linux:
     swapfile_size: 10GiB
 github:
@@ -10,6 +10,7 @@ conda_build:
   error_overlinking: true
 conda_forge_output_validation: true
 github_actions:
+  timeout_minutes: 2160
   self_hosted: true
   triggers:
   - push
