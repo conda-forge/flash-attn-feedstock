@@ -24,7 +24,7 @@ jobs:
           - CONFIG: linux_64_c_compiler_version11cuda_compilernvcccuda_compiler_version11.8cxx_compiler_version11python3.12.____cpython
             UPLOAD_PACKAGES: True
             os: ubuntu
-            runs_on: ['cirun-openstack-cpu-large--${{ github.run_id }}-linux_64_c_compiler_version11cuda_c_h58c8c5aa26', 'linux', 'x64', 'self-hosted']
+            runs_on: ['cirun-openstack-cpu-xlarge--${{ github.run_id }}-linux_64_c_compiler_version11cuda_c_h58c8c5aa26', 'linux', 'x64', 'self-hosted']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:11.8
     steps:
 
@@ -86,7 +86,6 @@ jobs:
       uses: conda-incubator/setup-miniconda@a4260408e20b96e80095f42ff7f1a15b27dd94ca # v3.0.4
       with:
         miniforge-version: latest
-        miniforge-variant: Mambaforge
       if: matrix.os == 'windows'
 
     - name: Build on windows
