@@ -48,10 +48,10 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_compiler_version11cuda_compilernvcccuda_compiler_version11.8cxx_compiler_version11python3.8.____cpython</td>
+              <td>linux_64_c_compiler_version11cuda_compilernvcccuda_compiler_version11.8cxx_compiler_version11python3.13.____cp313</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=22300&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/flash-attn-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version11cuda_compilernvcccuda_compiler_version11.8cxx_compiler_version11python3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/flash-attn-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version11cuda_compilernvcccuda_compiler_version11.8cxx_compiler_version11python3.13.____cp313" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -83,10 +83,10 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_compiler_version12cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12python3.8.____cpython</td>
+              <td>linux_64_c_compiler_version12cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12python3.13.____cp313</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=22300&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/flash-attn-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version12cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12python3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/flash-attn-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version12cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12python3.13.____cp313" alt="variant">
                 </a>
               </td>
             </tr><tr>
