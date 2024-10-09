@@ -9,3 +9,7 @@ github:
 conda_build:
   error_overlinking: true
 conda_forge_output_validation: true
+github_actions:
+  self_hosted: true
+provider:
+  linux_64: github_actions
