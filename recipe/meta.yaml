@@ -13,7 +13,7 @@ source:
   - path: setup.py
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
   script_env:
     # Limit MAX_JOBS in order to prevent runners from crashing
@@ -28,10 +28,6 @@ build:
     - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
     - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
     - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
-  rpaths:
-    - lib/
-    # PyTorch libs are in site-packages instead of with other shared objects
-    - {{ SP_DIR }}/torch/lib/
 
 requirements:
   build:
