@@ -52,6 +52,7 @@ requirements:
     - einops
     - python
     - pytorch =*=cuda*
+    - setuptools
 
 test:
   imports:
