@@ -21,6 +21,7 @@ build:
     - TORCH_CUDA_ARCH_LIST=8.0;8.6;8.9;9.0+PTX
   skip: true  # [cuda_compiler_version in (undefined, "None")]
   skip: true  # [not linux]
+  skip: true  # [py==313]  # Skip until pytorch dependency on setuptools is fixed
   # debugging skips below
   # skip: true  # [py!=313]
   # skip: true  # [cuda_compiler_version != "12.0"]
@@ -52,7 +53,6 @@ requirements:
     - einops
     - python
     - pytorch =*=cuda*
-    - setuptools
 
 test:
   imports:
