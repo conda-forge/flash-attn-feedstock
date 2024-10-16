@@ -6,6 +6,8 @@ name: Build conda package
 on:
   push:
 
+  pull_request:
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
   cancel-in-progress: true
@@ -14,7 +16,7 @@ jobs:
   build:
     name: ${{ matrix.CONFIG }}
     runs-on: ${{ matrix.runs_on }}
-    timeout-minutes: 360
+    timeout-minutes: 540
     strategy:
       fail-fast: false
       matrix:
