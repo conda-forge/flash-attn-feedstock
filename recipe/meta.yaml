@@ -1,5 +1,7 @@
 {% set name = "flash-attn" %}
 {% set version = "2.6.3" %}
+{% set fused_dense_lib_name = "flash-attn-fused-dense-lib" %}
+{% set layer_norm_name = "flash-attn-layer-norm" %}
 
 package:
   name: {{ name|lower }}
@@ -13,11 +15,10 @@ source:
   - path: setup.py
 
 build:
-  number: 1
-  script: {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
+  number: 2
   script_env:
     # Limit MAX_JOBS in order to prevent runners from crashing
-    - MAX_JOBS=4
+    - MAX_JOBS=20
     - TORCH_CUDA_ARCH_LIST=8.0;8.6;8.9;9.0+PTX
   skip: true  # [cuda_compiler_version in (undefined, "None")]
   skip: true  # [not linux]
@@ -54,13 +55,46 @@ requirements:
     - python
     - pytorch =*=cuda*
 
-test:
-  imports:
-    - flash_attn
-  commands:
-    - pip check
-  requires:
-    - pip
+outputs:
+  - name: {{ name|lower }}
+    build:
+      script: python -m pip install . -vvv --no-deps --no-build-isolation
+
+    test:
+      imports:
+        - flash_attn
+      commands:
+        - pip check
+      requires:
+        - pip
+
+  - name: {{ fused_dense_lib_name|lower }}
+    build:
+      script: python -m pip install . -vvv --no-deps --no-build-isolation
+      script_env:
+        - BUILD_FLASH_ATTN_COMPONENT=fused_dense_lib
+
+    test:
+      imports:
+        - fused_dense_lib
+      commands:
+        - pip check
+      requires:
+        - pip
+
+  - name: {{ layer_norm_name|lower }}
+    build:
+      script: python -m pip install . -vvv --no-deps --no-build-isolation
+      script_env:
+        - BUILD_FLASH_ATTN_COMPONENT=layer_norm
+
+    test:
+      imports:
+        - dropout_layer_norm
+      commands:
+        - pip check
+      requires:
+        - pip
 
 about:
   home: https://github.com/Dao-AILab/flash-attention
