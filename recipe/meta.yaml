@@ -17,14 +17,14 @@ build:
   number: 2
   script_env:
     # Limit MAX_JOBS in order to prevent runners from crashing
-    - MAX_JOBS=20
+    - MAX_JOBS=4
     - TORCH_CUDA_ARCH_LIST=8.0+PTX
   skip: true  # [cuda_compiler_version in (undefined, "None")]
   skip: true  # [not linux]
   skip: true  # [py==313]  # Skip until pytorch dependency on setuptools is fixed
   # debugging skips below
-  # skip: true  # [py!=313]
-  # skip: true  # [cuda_compiler_version != "12.0"]
+  skip: true  # [py!=313]
+  skip: true  # [cuda_compiler_version != "12.0"]
   ignore_run_exports_from:
     - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
     - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
@@ -104,6 +104,7 @@ about:
     - LICENSE_CUTLASS.txt
 
 extra:
+  feedstock_name: flash-attn
   recipe-maintainers:
     - carterbox
     - weiji14
