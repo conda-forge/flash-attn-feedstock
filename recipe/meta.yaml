@@ -1,3 +1,4 @@
+{% set name = "flash-attn" %}
 {% set version = "2.6.3" %}
 {% set fused_dense_lib_name = "flash-attn-fused-dense-lib" %}
 {% set layer_norm_name = "flash-attn-layer-norm" %}
@@ -15,6 +16,7 @@ source:
 
 build:
   number: 2
+  script: python -m pip install . -vvv --no-deps --no-build-isolation
   script_env:
     # Limit MAX_JOBS in order to prevent runners from crashing
     - MAX_JOBS=4
@@ -23,10 +25,11 @@ build:
   skip: true  # [not linux]
   skip: true  # [py==313]  # Skip until pytorch dependency on setuptools is fixed
   # debugging skips below
-  skip: true  # [py!=313]
+  skip: true  # [py!=312]
   skip: true  # [cuda_compiler_version != "12.0"]
   ignore_run_exports_from:
     - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
+    - libcurand-dev    # [(cuda_compiler_version or "").startswith("12")]
     - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
     - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
 
@@ -41,6 +44,7 @@ requirements:
     - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
     - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
     - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
+    - libcurand-dev    # [(cuda_compiler_version or "").startswith("12")]
     - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
     - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
     - libtorch         # required until pytorch run_exports libtorch
@@ -55,9 +59,12 @@ requirements:
     - pytorch =*=cuda*
 
 outputs:
-  - name: flash-attn
-    build:
-      script: python -m pip install . -vvv --no-deps --no-build-isolation
+  - name: {{ name|lower }}
+
+    files:
+      exclude:
+        - 'lib/python*/site-packages/fused_dense_lib.cpython*.so'
+        - 'lib/python*/site-packages/dropout_layer_norm.cpython*.so'
 
     test:
       imports:
@@ -68,28 +75,36 @@ outputs:
         - pip
 
   - name: {{ fused_dense_lib_name|lower }}
-    build:
-      script: python -m pip install . -vvv --no-deps --no-build-isolation
-      script_env:
-        - BUILD_FLASH_ATTN_COMPONENT=fused_dense_lib
+
+    files:
+      include:
+        - 'lib/python*/site-packages/fused_dense_lib.cpython*.so'
+
+    requirements:
+      run:
+        - {{ pin_subpackage(name|lower, exact=True) }}
 
     test:
       imports:
-        - fused_dense_lib
+        - flash_attn.ops.fused_dense
       commands:
         - pip check
       requires:
         - pip
 
   - name: {{ layer_norm_name|lower }}
-    build:
-      script: python -m pip install . -vvv --no-deps --no-build-isolation
-      script_env:
-        - BUILD_FLASH_ATTN_COMPONENT=layer_norm
+
+    files:
+      include:
+        - 'lib/python*/site-packages/dropout_layer_norm.cpython*.so'
+
+    requirements:
+      run:
+        - {{ pin_subpackage(name|lower, exact=True) }}
 
     test:
       imports:
-        - dropout_layer_norm
+        - flash_attn.ops.layer_norm
       commands:
         - pip check
       requires:
@@ -104,7 +119,7 @@ about:
     - LICENSE_CUTLASS.txt
 
 extra:
-  feedstock_name: flash-attn
+  feedstock_name: {{ name|lower }}
   recipe-maintainers:
     - carterbox
     - weiji14
