@@ -1,5 +1,5 @@
-About flash-attn-feedstock
-==========================
+About flash-attn-split-feedstock
+================================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/flash-attn-feedstock/blob/main/LICENSE.txt)
 
@@ -22,27 +22,29 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-flash--attn-green.svg)](https://anaconda.org/conda-forge/flash-attn) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/flash-attn.svg)](https://anaconda.org/conda-forge/flash-attn) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/flash-attn.svg)](https://anaconda.org/conda-forge/flash-attn) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/flash-attn.svg)](https://anaconda.org/conda-forge/flash-attn) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-flash--attn--fused--dense--lib-green.svg)](https://anaconda.org/conda-forge/flash-attn-fused-dense-lib) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/flash-attn-fused-dense-lib.svg)](https://anaconda.org/conda-forge/flash-attn-fused-dense-lib) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/flash-attn-fused-dense-lib.svg)](https://anaconda.org/conda-forge/flash-attn-fused-dense-lib) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/flash-attn-fused-dense-lib.svg)](https://anaconda.org/conda-forge/flash-attn-fused-dense-lib) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-flash--attn--layer--norm-green.svg)](https://anaconda.org/conda-forge/flash-attn-layer-norm) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/flash-attn-layer-norm.svg)](https://anaconda.org/conda-forge/flash-attn-layer-norm) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/flash-attn-layer-norm.svg)](https://anaconda.org/conda-forge/flash-attn-layer-norm) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/flash-attn-layer-norm.svg)](https://anaconda.org/conda-forge/flash-attn-layer-norm) |
 
-Installing flash-attn
-=====================
+Installing flash-attn-split
+===========================
 
-Installing `flash-attn` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `flash-attn-split` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `flash-attn` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `flash-attn, flash-attn-fused-dense-lib, flash-attn-layer-norm` can be installed with `conda`:
 
 ```
-conda install flash-attn
+conda install flash-attn flash-attn-fused-dense-lib flash-attn-layer-norm
 ```
 
 or with `mamba`:
 
 ```
-mamba install flash-attn
+mamba install flash-attn flash-attn-fused-dense-lib flash-attn-layer-norm
 ```
 
 It is possible to list all of the versions of `flash-attn` available on your platform with `conda`:
@@ -112,17 +114,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating flash-attn-feedstock
-=============================
+Updating flash-attn-split-feedstock
+===================================
 
-If you would like to improve the flash-attn recipe or build a new
+If you would like to improve the flash-attn-split recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/flash-attn-feedstock are
+Note that all branches in the conda-forge/flash-attn-split-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks and branches in the main repository should only be used to
 build distinct package versions.
