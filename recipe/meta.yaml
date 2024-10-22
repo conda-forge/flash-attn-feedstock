@@ -59,11 +59,8 @@ outputs:
 
     requirements:
       build:
-        - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        - {{ compiler('cuda') }}
         - {{ stdlib('c') }}
-        - ninja
       host:
         - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
         - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
@@ -72,15 +69,10 @@ outputs:
         - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
         - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
         - libtorch         # required until pytorch run_exports libtorch
-        - pip
         - python
-        - pytorch
         - pytorch =*=cuda*
-        - setuptools
       run:
         - einops
-        - python
-        - pytorch =*=cuda*
 
     files:
       include:
@@ -100,11 +92,8 @@ outputs:
 
     requirements:
       build:
-        - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        - {{ compiler('cuda') }}
         - {{ stdlib('c') }}
-        - ninja
       host:
         - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
         - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
@@ -113,15 +102,9 @@ outputs:
         - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
         - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
         - libtorch         # required until pytorch run_exports libtorch
-        - pip
         - python
-        - pytorch
         - pytorch =*=cuda*
-        - setuptools
       run:
-        - einops
-        - python
-        - pytorch =*=cuda*
         - {{ pin_subpackage(name|lower, exact=True) }}
 
     files:
@@ -140,11 +123,8 @@ outputs:
 
     requirements:
       build:
-        - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        - {{ compiler('cuda') }}
         - {{ stdlib('c') }}
-        - ninja
       host:
         - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
         - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
@@ -153,15 +133,9 @@ outputs:
         - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
         - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
         - libtorch         # required until pytorch run_exports libtorch
-        - pip
         - python
-        - pytorch
         - pytorch =*=cuda*
-        - setuptools
       run:
-        - einops
-        - python
-        - pytorch =*=cuda*
         - {{ pin_subpackage(name|lower, exact=True) }}
 
     files:
