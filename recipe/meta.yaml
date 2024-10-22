@@ -159,6 +159,7 @@ about:
     - LICENSE_CUTLASS.txt
 
 extra:
+  feedstock-name: {{ name|lower }}
   recipe-maintainers:
     - carterbox
     - weiji14
