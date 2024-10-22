@@ -53,18 +53,40 @@ requirements:
     - pytorch
     - pytorch =*=cuda*
     - setuptools
-  run:
-    - einops
-    - python
-    - pytorch =*=cuda*
 
 outputs:
   - name: {{ name|lower }}
 
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ compiler('cuda') }}
+        - {{ stdlib('c') }}
+        - ninja
+      host:
+        - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
+        - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
+        - libcurand-dev    # [(cuda_compiler_version or "").startswith("12")]
+        - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - libtorch         # required until pytorch run_exports libtorch
+        - pip
+        - python
+        - pytorch
+        - pytorch =*=cuda*
+        - setuptools
+      run:
+        - einops
+        - python
+        - pytorch =*=cuda*
+
     files:
-      exclude:
-        - 'lib/python*/site-packages/fused_dense_lib.cpython*.so'
-        - 'lib/python*/site-packages/dropout_layer_norm.cpython*.so'
+      include:
+        - 'lib/python*/site-packages/flash_attn/**'
+        - 'lib/python*/site-packages/flash_attn-{{ version }}.dist-info/**'
+        - 'lib/python*/site-packages/flash_attn_2_cuda.cpython-*.so'
 
     test:
       imports:
@@ -76,13 +98,35 @@ outputs:
 
   - name: {{ fused_dense_lib_name|lower }}
 
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ compiler('cuda') }}
+        - {{ stdlib('c') }}
+        - ninja
+      host:
+        - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
+        - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
+        - libcurand-dev    # [(cuda_compiler_version or "").startswith("12")]
+        - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - libtorch         # required until pytorch run_exports libtorch
+        - pip
+        - python
+        - pytorch
+        - pytorch =*=cuda*
+        - setuptools
+      run:
+        - einops
+        - python
+        - pytorch =*=cuda*
+        - {{ pin_subpackage(name|lower, exact=True) }}
+
     files:
       include:
-        - 'lib/python*/site-packages/fused_dense_lib.cpython*.so'
-
-    requirements:
-      run:
-        - {{ pin_subpackage(name|lower, exact=True) }}
+        - 'lib/python*/site-packages/fused_dense_lib.cpython-*.so'
 
     test:
       imports:
@@ -94,13 +138,35 @@ outputs:
 
   - name: {{ layer_norm_name|lower }}
 
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ compiler('cuda') }}
+        - {{ stdlib('c') }}
+        - ninja
+      host:
+        - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
+        - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
+        - libcurand-dev    # [(cuda_compiler_version or "").startswith("12")]
+        - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - libtorch         # required until pytorch run_exports libtorch
+        - pip
+        - python
+        - pytorch
+        - pytorch =*=cuda*
+        - setuptools
+      run:
+        - einops
+        - python
+        - pytorch =*=cuda*
+        - {{ pin_subpackage(name|lower, exact=True) }}
+
     files:
       include:
-        - 'lib/python*/site-packages/dropout_layer_norm.cpython*.so'
-
-    requirements:
-      run:
-        - {{ pin_subpackage(name|lower, exact=True) }}
+        - 'lib/python*/site-packages/dropout_layer_norm.cpython-*.so'
 
     test:
       imports:
@@ -119,7 +185,6 @@ about:
     - LICENSE_CUTLASS.txt
 
 extra:
-  feedstock_name: {{ name|lower }}
   recipe-maintainers:
     - carterbox
     - weiji14
