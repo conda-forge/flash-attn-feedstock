@@ -27,11 +27,6 @@ build:
   # debugging skips below
   skip: true  # [py!=312]
   skip: true  # [cuda_compiler_version != "12.0"]
-  ignore_run_exports_from:
-    - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
-    - libcurand-dev    # [(cuda_compiler_version or "").startswith("12")]
-    - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
-    - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
 
 requirements:
   build:
@@ -56,19 +51,14 @@ requirements:
 
 outputs:
   - name: {{ name|lower }}
-
     requirements:
       build:
-        - {{ compiler('cxx') }}
-        - {{ stdlib('c') }}
+        - libgcc-ng         # needed for DSO checker
+        - libstdcxx-ng      # needed for DSO checker
+        - {{ stdlib('c') }} # needed for DSO checker
       host:
         - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
         - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
-        - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
-        - libcurand-dev    # [(cuda_compiler_version or "").startswith("12")]
-        - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
-        - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
-        - libtorch         # required until pytorch run_exports libtorch
         - python
         - pytorch =*=cuda*
       run:
@@ -89,19 +79,14 @@ outputs:
         - pip
 
   - name: {{ fused_dense_lib_name|lower }}
-
     requirements:
       build:
-        - {{ compiler('cxx') }}
-        - {{ stdlib('c') }}
+        - libgcc-ng         # needed for DSO checker
+        - libstdcxx-ng      # needed for DSO checker
+        - {{ stdlib('c') }} # needed for DSO checker
       host:
         - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
         - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
-        - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
-        - libcurand-dev    # [(cuda_compiler_version or "").startswith("12")]
-        - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
-        - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
-        - libtorch         # required until pytorch run_exports libtorch
         - python
         - pytorch =*=cuda*
       run:
@@ -120,19 +105,14 @@ outputs:
         - pip
 
   - name: {{ layer_norm_name|lower }}
-
     requirements:
       build:
-        - {{ compiler('cxx') }}
-        - {{ stdlib('c') }}
+        - libgcc-ng         # needed for DSO checker
+        - libstdcxx-ng      # needed for DSO checker
+        - {{ stdlib('c') }} # needed for DSO checker
       host:
         - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
         - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
-        - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
-        - libcurand-dev    # [(cuda_compiler_version or "").startswith("12")]
-        - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
-        - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
-        - libtorch         # required until pytorch run_exports libtorch
         - python
         - pytorch =*=cuda*
       run:
