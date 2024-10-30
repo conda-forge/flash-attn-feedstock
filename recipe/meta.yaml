@@ -1,14 +1,11 @@
-{% set name = "flash-attn" %}
 {% set version = "2.6.3" %}
-{% set fused_dense_lib_name = "flash-attn-fused-dense-lib" %}
-{% set layer_norm_name = "flash-attn-layer-norm" %}
 
 package:
   name: flash-attn-split
   version: {{ version }}
 
 source:
-  - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/flash_attn-{{ version }}.tar.gz
+  - url: https://pypi.io/packages/source/f/flash-attn/flash_attn-{{ version }}.tar.gz
     sha256: 5bfae9500ad8e7d2937ebccb4906f3bc464d1bf66eedd0e4adabd520811c7b52
   # Overwrite with a simpler build script that doesn't try to revend pre-compiled binaries
   - path: pyproject.toml
@@ -50,7 +47,7 @@ requirements:
     - setuptools
 
 outputs:
-  - name: {{ name|lower }}
+  - name: flash-attn
     requirements:
       build:
         - {{ compiler('cxx') }} # needed for DSO checker
@@ -77,7 +74,7 @@ outputs:
       requires:
         - pip
 
-  - name: {{ fused_dense_lib_name|lower }}
+  - name: flash-attn-fused-dense-lib
     requirements:
       build:
         - {{ compiler('cxx') }} # needed for DSO checker
@@ -88,7 +85,7 @@ outputs:
         - python
         - pytorch =*=cuda*
       run:
-        - {{ pin_subpackage(name|lower, exact=True) }}
+        - {{ pin_subpackage('flash-attn', exact=True) }}
 
     files:
       include:
@@ -102,7 +99,7 @@ outputs:
       requires:
         - pip
 
-  - name: {{ layer_norm_name|lower }}
+  - name: flash-attn-layer-norm
     requirements:
       build:
         - {{ compiler('cxx') }} # needed for DSO checker
@@ -113,7 +110,7 @@ outputs:
         - python
         - pytorch =*=cuda*
       run:
-        - {{ pin_subpackage(name|lower, exact=True) }}
+        - {{ pin_subpackage('flash-attn', exact=True) }}
 
     files:
       include:
@@ -136,7 +133,7 @@ about:
     - LICENSE_CUTLASS.txt
 
 extra:
-  feedstock-name: {{ name|lower }}
+  feedstock-name: flash-attn
   recipe-maintainers:
     - carterbox
     - weiji14
