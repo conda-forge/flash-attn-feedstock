@@ -13,7 +13,7 @@ source:
 
 build:
   number: 2
-  script: python -m pip install . -vvv --no-deps --no-build-isolation
+  script: {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
   script_env:
     # Limit MAX_JOBS in order to prevent runners from crashing
     - MAX_JOBS=4
