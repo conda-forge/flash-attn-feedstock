@@ -146,8 +146,10 @@ setup(
                 "csrc/fused_dense_lib/fused_dense_cuda.cu",
             ],
             extra_compile_args={
-                'cxx': ['-O3', ],
-                'nvcc': ['-O3'],
+                "cxx": [
+                    "-O3",
+                ],
+                "nvcc": ["-O3"],
             },
             extra_link_args=["-Wl,--strip-all", "-Wl,--no-undefined"],
         ),
@@ -225,7 +227,7 @@ setup(
                     "--expt-relaxed-constexpr",
                     "--expt-extended-lambda",
                     "--use_fast_math",
-                ]
+                ],
             },
             extra_link_args=["-Wl,--strip-all", "-Wl,--no-undefined"],
             include_dirs=[
