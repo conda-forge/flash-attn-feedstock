@@ -84,7 +84,7 @@ outputs:
       requires:
         - pip
 
-  - name: flash-attn-fused-dense-lib
+  - name: flash-attn-fused-dense
     requirements:
       build:
         - {{ compiler('cxx') }} # needed for DSO checker
