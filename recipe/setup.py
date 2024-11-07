@@ -132,7 +132,7 @@ setup(
                     # "-DFLASHATTENTION_DISABLE_LOCAL",
                 ],
             },
-            extra_link_args = ["-Wl,--strip-all", "-Wl,--no-undefined"],
+            extra_link_args=["-Wl,--strip-all", "-Wl,--no-undefined"],
             include_dirs=[
                 _this_dir / "csrc" / "flash_attn",
                 _this_dir / "csrc" / "flash_attn" / "src",
@@ -149,7 +149,7 @@ setup(
                 'cxx': ['-O3', ],
                 'nvcc': ['-O3'],
             },
-            extra_link_args = ["-Wl,--strip-all", "-Wl,--no-undefined"],
+            extra_link_args=["-Wl,--strip-all", "-Wl,--no-undefined"],
         ),
         CUDAExtension(
             name="dropout_layer_norm",
@@ -227,7 +227,7 @@ setup(
                     "--use_fast_math",
                 ]
             },
-            extra_link_args = ["-Wl,--strip-all", "-Wl,--no-undefined"],
+            extra_link_args=["-Wl,--strip-all", "-Wl,--no-undefined"],
             include_dirs=[
                 _this_dir / "csrc" / "layer_norm",
             ],
