@@ -10,6 +10,7 @@ https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.CUD
 """
 
 import pathlib
+import sys
 
 from setuptools import setup, find_packages
 from torch.utils.cpp_extension import BuildExtension, CUDAExtension
@@ -138,6 +139,10 @@ setup(
                 _this_dir / "csrc" / "flash_attn" / "src",
                 _this_dir / "csrc" / "cutlass" / "include",
             ],
+            libraries=[
+                "cudart",
+                f"python{sys.version_info[0]}.{sys.version_info[1]}",
+            ],
         ),
         CUDAExtension(
             name="fused_dense_lib",
@@ -152,6 +157,12 @@ setup(
                 "nvcc": ["-O3"],
             },
             extra_link_args=["-Wl,--strip-all", "-Wl,--no-undefined"],
+            libraries=[
+                "cudart",
+                "cublas",
+                "cublasLt",
+                f"python{sys.version_info[0]}.{sys.version_info[1]}",
+            ],
         ),
         CUDAExtension(
             name="dropout_layer_norm",
@@ -232,6 +243,10 @@ setup(
             extra_link_args=["-Wl,--strip-all", "-Wl,--no-undefined"],
             include_dirs=[
                 _this_dir / "csrc" / "layer_norm",
+            ],
+            libraries=[
+                "cudart",
+                f"python{sys.version_info[0]}.{sys.version_info[1]}",
             ],
         ),
     ],
