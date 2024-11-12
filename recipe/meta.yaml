@@ -85,6 +85,7 @@ outputs:
       build:
         - {{ compiler('cxx') }} # needed for DSO checker
         - {{ stdlib('c') }}     # needed for DSO checker
+        - {{ compiler('cuda') }}
       host:
         - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
         - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
@@ -113,6 +114,7 @@ outputs:
       build:
         - {{ compiler('cxx') }} # needed for DSO checker
         - {{ stdlib('c') }}     # needed for DSO checker
+        - {{ compiler('cuda') }}
       host:
         - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
         - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
