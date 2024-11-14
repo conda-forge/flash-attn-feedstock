@@ -1,5 +1,5 @@
 {% set name = "flash-attn" %}
-{% set version = "2.6.3" %}
+{% set version = "2.7.0.post2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/flash_attn-{{ version }}.tar.gz
-    sha256: 5bfae9500ad8e7d2937ebccb4906f3bc464d1bf66eedd0e4adabd520811c7b52
+    sha256: 62244de20dabad9a42d0636f6b2ea4c051d33df179a0b3bea4352502ebca1466
   # Overwrite with a simpler build script that doesn't try to revend pre-compiled binaries
   - path: pyproject.toml
   - path: setup.py
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
   script_env:
     # Limit MAX_JOBS in order to prevent runners from crashing
@@ -21,7 +21,7 @@ build:
     - TORCH_CUDA_ARCH_LIST=8.0;8.6;8.9;9.0+PTX
   skip: true  # [cuda_compiler_version in (undefined, "None")]
   skip: true  # [not linux]
-  skip: true  # [py==313]  # Skip until pytorch dependency on setuptools is fixed
+  skip: true  # [py==313]
   # debugging skips below
   # skip: true  # [py!=313]
   # skip: true  # [cuda_compiler_version != "12.0"]
