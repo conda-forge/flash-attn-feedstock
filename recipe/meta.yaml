@@ -12,7 +12,7 @@ source:
   - path: setup.py
 
 build:
-  number: 3
+  number: 2
   script: {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
   script_env:
     # Limit MAX_JOBS in order to prevent runners from crashing
@@ -22,8 +22,8 @@ build:
   skip: true  # [not linux]
   skip: true  # [py==313]  # Skip until pytorch dependency on setuptools is fixed
   # debugging skips below
-  skip: true  # [py!=312]
-  skip: true  # [cuda_compiler_version != "11.8"]
+  # skip: true  # [py!=312]
+  # skip: true  # [cuda_compiler_version != "11.8"]
 
 requirements:
   build:
