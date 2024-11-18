@@ -1,19 +1,18 @@
-{% set name = "flash-attn" %}
 {% set version = "2.6.3" %}
 
 package:
-  name: {{ name|lower }}
+  name: flash-attn-split
   version: {{ version }}
 
 source:
-  - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/flash_attn-{{ version }}.tar.gz
+  - url: https://pypi.org/packages/source/f/flash-attn/flash_attn-{{ version }}.tar.gz
     sha256: 5bfae9500ad8e7d2937ebccb4906f3bc464d1bf66eedd0e4adabd520811c7b52
   # Overwrite with a simpler build script that doesn't try to revend pre-compiled binaries
   - path: pyproject.toml
   - path: setup.py
 
 build:
-  number: 1
+  number: 2
   script: {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
   script_env:
     # Limit MAX_JOBS in order to prevent runners from crashing
@@ -23,12 +22,8 @@ build:
   skip: true  # [not linux]
   skip: true  # [py==313]  # Skip until pytorch dependency on setuptools is fixed
   # debugging skips below
-  # skip: true  # [py!=313]
-  # skip: true  # [cuda_compiler_version != "12.0"]
-  ignore_run_exports_from:
-    - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
-    - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
-    - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
+  # skip: true  # [py!=312]
+  # skip: true  # [cuda_compiler_version != "11.8"]
 
 requirements:
   build:
@@ -41,6 +36,7 @@ requirements:
     - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
     - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
     - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
+    - libcurand-dev    # [(cuda_compiler_version or "").startswith("12")]
     - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
     - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
     - libtorch         # required until pytorch run_exports libtorch
@@ -49,18 +45,97 @@ requirements:
     - pytorch
     - pytorch =*=cuda*
     - setuptools
-  run:
-    - einops
-    - python
-    - pytorch =*=cuda*
 
-test:
-  imports:
-    - flash_attn
-  commands:
-    - pip check
-  requires:
-    - pip
+outputs:
+  - name: flash-attn
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ compiler('cuda') }}
+        - {{ stdlib('c') }}
+      host:
+        - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
+        - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - python
+        - libtorch         # required until pytorch run_exports libtorch
+        - pytorch
+        - pytorch =*=cuda*
+      run:
+        - einops
+        - python
+        - pytorch =*=cuda*
+
+    files:
+      include:
+        - 'lib/python*/site-packages/flash_attn/**'
+        - 'lib/python*/site-packages/flash_attn-{{ version }}.dist-info/**'
+        - 'lib/python*/site-packages/flash_attn_2_cuda.cpython-*.so'
+
+    test:
+      imports:
+        - flash_attn
+      commands:
+        - pip check
+      requires:
+        - pip
+
+  - name: flash-attn-fused-dense
+    requirements:
+      build:
+        - {{ compiler('cxx') }} # needed for DSO checker
+        - {{ stdlib('c') }}     # needed for DSO checker
+        - {{ compiler('cuda') }}
+      host:
+        - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
+        - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
+        - python
+        - pytorch
+        - pytorch =*=cuda*
+      run:
+        - python
+        - {{ pin_subpackage('flash-attn', exact=True) }}
+
+    files:
+      include:
+        - 'lib/python*/site-packages/fused_dense_lib.cpython-*.so'
+
+    test:
+      imports:
+        - flash_attn.ops.fused_dense
+      commands:
+        - pip check
+      requires:
+        - pip
+
+  - name: flash-attn-layer-norm
+    requirements:
+      build:
+        - {{ compiler('cxx') }} # needed for DSO checker
+        - {{ stdlib('c') }}     # needed for DSO checker
+        - {{ compiler('cuda') }}
+      host:
+        - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
+        - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - python
+        - pytorch
+        - pytorch =*=cuda*
+      run:
+        - python
+        - {{ pin_subpackage('flash-attn', exact=True) }}
+
+    files:
+      include:
+        - 'lib/python*/site-packages/dropout_layer_norm.cpython-*.so'
+
+    test:
+      imports:
+        - flash_attn.ops.layer_norm
+      commands:
+        - pip check
+      requires:
+        - pip
 
 about:
   home: https://github.com/Dao-AILab/flash-attention
@@ -71,6 +146,7 @@ about:
     - LICENSE_CUTLASS.txt
 
 extra:
+  feedstock-name: flash-attn
   recipe-maintainers:
     - carterbox
     - weiji14
