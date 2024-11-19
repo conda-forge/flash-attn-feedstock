@@ -1,4 +1,4 @@
-{% set version = "2.7.0" %}
+{% set version = "2.7.0.post2" %}
 
 package:
   name: flash-attn-split
@@ -6,7 +6,7 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/f/flash-attn/flash_attn-{{ version }}.tar.gz
-    sha256: 48967243e76f3cb9b368cfdb1f90aa2201903c92d39b895db2cc207c8dc22345
+    sha256: 62244de20dabad9a42d0636f6b2ea4c051d33df179a0b3bea4352502ebca1466
   # Overwrite with a simpler build script that doesn't try to revend pre-compiled binaries
   - path: pyproject.toml
   - path: setup.py
