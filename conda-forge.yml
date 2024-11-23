@@ -1,12 +1,12 @@
-github:
-  branch_name: main
-  tooling_branch_name: main
 conda_build:
   error_overlinking: true
 conda_forge_output_validation: true
+github:
+  branch_name: main
+  tooling_branch_name: main
 github_actions:
-  timeout_minutes: 1080
   self_hosted: true
+  timeout_minutes: 1080
   triggers:
   - push
   - pull_request
