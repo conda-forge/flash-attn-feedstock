@@ -12,6 +12,9 @@ github_actions:
   triggers:
   - push
   - pull_request
+os_version:
+  linux_64: alma8
+  linux_aarch64: alma8
 provider:
   linux_64: github_actions
   linux_aarch64: github_actions
