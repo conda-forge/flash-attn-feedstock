@@ -20,6 +20,7 @@ build:
     - TORCH_CUDA_ARCH_LIST=8.0;8.6;8.9;9.0+PTX
   skip: true  # [cuda_compiler_version in (undefined, "None")]
   skip: true  # [cuda_compiler_version == "11.8" and aarch64]
+  skip: true  # [cuda_compiler_version == "11.8"] # remove for flash-attn 2.7.1 or higher
   skip: true  # [not linux]
   # debugging skips below
   # skip: true  # [py!=313]
