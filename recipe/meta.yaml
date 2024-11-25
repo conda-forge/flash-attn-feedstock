@@ -22,8 +22,7 @@ build:
   skip: true  # [cuda_compiler_version == "11.8" and aarch64]
   skip: true  # [not linux]
   # debugging skips below
-  skip: true  # [not aarch64]
-  skip: true  # [py!=313]
+  # skip: true  # [py!=313]
   # skip: true  # [cuda_compiler_version != "11.8"]
 
 requirements:
