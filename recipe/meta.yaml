@@ -1,12 +1,12 @@
-{% set version = "2.7.2.post1" %}
+{% set version = "2.7.2" %}
 
 package:
   name: flash-attn-split
   version: {{ version }}
 
 source:
-  - url: https://pypi.org/packages/source/f/flash-attn/flash_attn-{{ version }}.tar.gz
-    sha256: 574897afeb6cbd63e78a612dded95491efe4a46818245cf1a5ace7357d993faa
+  - url: https://github.com/Dao-AILab/flash-attention/archive/refs/tags/v{{ version }}.tar.gz
+    sha256: eb4e4a2ecc17392b4414da5b42adea864c99ef0b7d6101ea3d28ab11667ab00c
   # Overwrite with a simpler build script that doesn't try to revend pre-compiled binaries
   - path: pyproject.toml
   - path: setup.py
@@ -20,7 +20,6 @@ build:
     - TORCH_CUDA_ARCH_LIST=8.0;8.6;8.9;9.0+PTX
   skip: true  # [cuda_compiler_version in (undefined, "None")]
   skip: true  # [cuda_compiler_version == "11.8" and aarch64]
-  skip: true  # [cuda_compiler_version == "11.8"]
   skip: true  # [not linux]
   # debugging skips below
   # skip: true  # [py!=313]
