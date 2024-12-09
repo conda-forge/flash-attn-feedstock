@@ -1,12 +1,15 @@
-{% set version = "2.7.2" %}
+{% set version = "2.7.2.post1" %}
 
 package:
   name: flash-attn-split
-  version: {{ version }}
+  # Strip ".postX" from version number because these just indicate wheel rebuilds and
+  # are not relevant to conda builds
+  version: {{ version.split('.')[:3] | join('.') }}
 
 source:
-  - url: https://github.com/Dao-AILab/flash-attention/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: eb4e4a2ecc17392b4414da5b42adea864c99ef0b7d6101ea3d28ab11667ab00c
+  # Use PYPI sdist instead of GitHub because they include a specific revended CUTLASS
+  - url: https://pypi.org/packages/source/f/flash-attn/flash_attn-{{ version }}.tar.gz
+    sha256: 574897afeb6cbd63e78a612dded95491efe4a46818245cf1a5ace7357d993faa
   # Overwrite with a simpler build script that doesn't try to revend pre-compiled binaries
   - path: pyproject.toml
   - path: setup.py
