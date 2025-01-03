@@ -122,6 +122,7 @@ setup(
                     "--expt-relaxed-constexpr",
                     "--expt-extended-lambda",
                     "--use_fast_math",
+                    "-Xfatbin -compress-all",
                     # "--ptxas-options=-v",
                     # "--ptxas-options=-O2",
                     # "-lineinfo",
@@ -154,7 +155,10 @@ setup(
                 "cxx": [
                     "-O3",
                 ],
-                "nvcc": ["-O3"],
+                "nvcc": [
+                    "-O3"
+                    "-Xfatbin -compress-all",
+                ],
             },
             extra_link_args=["-Wl,--strip-all", "-Wl,--no-undefined"],
             libraries=[
@@ -238,6 +242,7 @@ setup(
                     "--expt-relaxed-constexpr",
                     "--expt-extended-lambda",
                     "--use_fast_math",
+                    "-Xfatbin -compress-all",
                 ],
             },
             extra_link_args=["-Wl,--strip-all", "-Wl,--no-undefined"],
