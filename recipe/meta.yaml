@@ -20,7 +20,6 @@ build:
   script_env:
     # Limit MAX_JOBS in order to prevent runners from crashing
     - MAX_JOBS=4
-    - TORCH_NVCC_FLAGS='-Xfatbin -compress-all'
     - TORCH_CUDA_ARCH_LIST=8.0;8.6;8.9;9.0+PTX
   # Satisfy linter by not having duplicate skip keys
   skip: true  # [(cuda_compiler_version in (undefined, "None")) or (cuda_compiler_version == "11.8" and aarch64) or (not linux)]
