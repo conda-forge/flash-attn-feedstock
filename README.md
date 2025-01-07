@@ -142,6 +142,3 @@ Feedstock Maintainers
 * [@carterbox](https://github.com/carterbox/)
 * [@weiji14](https://github.com/weiji14/)
 
-
-<!-- dummy commit to enable rerendering -->
-
