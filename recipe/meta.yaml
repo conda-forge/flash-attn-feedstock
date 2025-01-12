@@ -1,4 +1,4 @@
-{% set version = "2.7.2.post1" %}
+{% set version = "2.7.3" %}
 
 package:
   name: flash-attn-split
@@ -9,7 +9,7 @@ package:
 source:
   # Use PYPI sdist instead of GitHub because they include a specific revended CUTLASS
   - url: https://pypi.org/packages/source/f/flash-attn/flash_attn-{{ version }}.tar.gz
-    sha256: 574897afeb6cbd63e78a612dded95491efe4a46818245cf1a5ace7357d993faa
+    sha256: 9078cf92355c4e3f77f01626ece8c71aad26bdbfa827c2af8c6ac5632cc1cc58
   # Overwrite with a simpler build script that doesn't try to revend pre-compiled binaries
   - path: pyproject.toml
   - path: setup.py
