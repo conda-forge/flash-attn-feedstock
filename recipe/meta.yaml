@@ -1,4 +1,4 @@
-{% set version = "2.7.3" %}
+{% set version = "2.7.4.post1" %}
 # TODO: Add archs 10.0 and 12.0 with CTK 12.8 release
 
 package:
@@ -10,13 +10,13 @@ package:
 source:
   # Use PYPI sdist instead of GitHub because they include a specific revended CUTLASS
   - url: https://pypi.org/packages/source/f/flash-attn/flash_attn-{{ version }}.tar.gz
-    sha256: 9078cf92355c4e3f77f01626ece8c71aad26bdbfa827c2af8c6ac5632cc1cc58
+    sha256: f03485c9a49a4d68d0733acdcad80ab0e72afa025a777fdc2966ceccf9d51765
   # Overwrite with a simpler build script that doesn't try to revend pre-compiled binaries
   - path: pyproject.toml
   - path: setup.py
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
   script_env:
     # Limit MAX_JOBS in order to prevent runners from crashing
