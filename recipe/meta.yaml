@@ -23,10 +23,10 @@ build:
     - MAX_JOBS=4
     - TORCH_CUDA_ARCH_LIST=8.0;8.6;8.9;9.0+PTX
   # Satisfy linter by not having duplicate skip keys
-  skip: true  # [(cuda_compiler_version in (undefined, "None")) or (cuda_compiler_version == "11.8" and aarch64) or (not linux)]
+  # pytorch in conda-forge does not support CUDA 11.8 as of v2.5
+  skip: true  # [cuda_compiler_version in ("None", "11.8") or (not linux)]
   # debugging skips below
   # skip: true  # [py!=313]
-  # skip: true  # [cuda_compiler_version != "11.8"]
 
 requirements:
   build:
