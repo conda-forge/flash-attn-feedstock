@@ -35,6 +35,8 @@ requirements:
     - {{ compiler('cuda') }}
     - {{ stdlib('c') }}
     - ninja
+    - pytorch           # [build_platform != target_platform]
+    - pytorch =*=cuda*  # [build_platform != target_platform]
   host:
     - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
     - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
