@@ -1,4 +1,4 @@
-{% set version = "2.7.3" %}
+{% set version = "2.7.4.post1" %}
 # TODO: Add archs 10.0 and 12.0 with CTK 12.8 release
 
 package:
@@ -10,7 +10,7 @@ package:
 source:
   # Use PYPI sdist instead of GitHub because they include a specific revended CUTLASS
   - url: https://pypi.org/packages/source/f/flash-attn/flash_attn-{{ version }}.tar.gz
-    sha256: 9078cf92355c4e3f77f01626ece8c71aad26bdbfa827c2af8c6ac5632cc1cc58
+    sha256: f03485c9a49a4d68d0733acdcad80ab0e72afa025a777fdc2966ceccf9d51765
   # Overwrite with a simpler build script that doesn't try to revend pre-compiled binaries
   - path: pyproject.toml
   - path: setup.py
@@ -23,10 +23,10 @@ build:
     - MAX_JOBS=4
     - TORCH_CUDA_ARCH_LIST=8.0;8.6;8.9;9.0+PTX
   # Satisfy linter by not having duplicate skip keys
-  skip: true  # [(cuda_compiler_version in (undefined, "None")) or (cuda_compiler_version == "11.8" and aarch64) or (not linux)]
+  # pytorch in conda-forge does not support CUDA 11.8 as of v2.5
+  skip: true  # [cuda_compiler_version in ("None", "11.8") or (not linux)]
   # debugging skips below
   # skip: true  # [py!=313]
-  # skip: true  # [cuda_compiler_version != "11.8"]
 
 requirements:
   build:
@@ -35,6 +35,8 @@ requirements:
     - {{ compiler('cuda') }}
     - {{ stdlib('c') }}
     - ninja
+    - pytorch           # [build_platform != target_platform]
+    - pytorch =*=cuda*  # [build_platform != target_platform]
   host:
     - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
     - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
