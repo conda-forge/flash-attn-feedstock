@@ -16,7 +16,7 @@ source:
   - path: setup.py
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
   script_env:
     # Limit MAX_JOBS in order to prevent runners from crashing
@@ -36,7 +36,7 @@ requirements:
     - {{ stdlib('c') }}
     - ninja
     - pytorch           # [build_platform != target_platform]
-    - pytorch =*=cuda*  # [build_platform != target_platform]
+    - pytorch * cuda*   # [build_platform != target_platform]
   host:
     - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
     - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
@@ -48,7 +48,7 @@ requirements:
     - pip
     - python
     - pytorch
-    - pytorch =*=cuda*
+    - pytorch * cuda*
     - setuptools
 
 outputs:
@@ -65,11 +65,11 @@ outputs:
         - python
         - libtorch         # required until pytorch run_exports libtorch
         - pytorch
-        - pytorch =*=cuda*
+        - pytorch * cuda*
       run:
         - einops
         - python
-        - pytorch =*=cuda*
+        - pytorch * cuda*
 
     files:
       include:
@@ -97,7 +97,7 @@ outputs:
         - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
         - python
         - pytorch
-        - pytorch =*=cuda*
+        - pytorch * cuda*
       run:
         - python
         - {{ pin_subpackage('flash-attn', exact=True) }}
@@ -125,7 +125,7 @@ outputs:
         - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
         - python
         - pytorch
-        - pytorch =*=cuda*
+        - pytorch * cuda*
       run:
         - python
         - {{ pin_subpackage('flash-attn', exact=True) }}
