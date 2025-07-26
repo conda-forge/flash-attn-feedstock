@@ -1,5 +1,4 @@
 {% set version = "2.7.4.post1" %}
-# TODO: Add archs 10.0 and 12.0 with CTK 12.8 release
 
 package:
   name: flash-attn-split
@@ -23,8 +22,7 @@ build:
     - MAX_JOBS=4
     - TORCH_CUDA_ARCH_LIST=8.0;8.6;8.9;9.0;10.0;12.0+PTX
   # Satisfy linter by not having duplicate skip keys
-  # pytorch in conda-forge does not support CUDA 11.8 as of v2.5
-  skip: true  # [cuda_compiler_version in ("None", "11.8") or (not linux)]
+  skip: true  # [cuda_compiler_version == "None" or (not linux)]
   # debugging skips below
   # skip: true  # [py!=313]
 
@@ -39,11 +37,11 @@ requirements:
     - pytorch * cuda*   # [build_platform != target_platform]
   host:
     - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
-    - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
-    - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
-    - libcurand-dev    # [(cuda_compiler_version or "").startswith("12")]
-    - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
-    - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
+    - cuda-cudart-dev
+    - libcublas-dev
+    - libcurand-dev
+    - libcusolver-dev
+    - libcusparse-dev
     - libtorch         # required until pytorch run_exports libtorch
     - pip
     - python
@@ -61,7 +59,7 @@ outputs:
         - {{ stdlib('c') }}
       host:
         - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
-        - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - cuda-cudart-dev
         - python
         - libtorch         # required until pytorch run_exports libtorch
         - pytorch
@@ -93,8 +91,8 @@ outputs:
         - {{ compiler('cuda') }}
       host:
         - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
-        - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
-        - libcublas-dev    # [(cuda_compiler_version or "").startswith("12")]
+        - cuda-cudart-dev
+        - libcublas-dev
         - python
         - pytorch
         - pytorch * cuda*
@@ -122,7 +120,7 @@ outputs:
         - {{ compiler('cuda') }}
       host:
         - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
-        - cuda-cudart-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - cuda-cudart-dev
         - python
         - pytorch
         - pytorch * cuda*
