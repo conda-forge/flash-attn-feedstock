@@ -42,7 +42,6 @@ requirements:
     - libcurand-dev
     - libcusolver-dev
     - libcusparse-dev
-    - libtorch         # required until pytorch run_exports libtorch
     - pip
     - python
     - pytorch
@@ -61,7 +60,6 @@ outputs:
         - cuda-version {{ cuda_compiler_version }}  # same cuda for host and build
         - cuda-cudart-dev
         - python
-        - libtorch         # required until pytorch run_exports libtorch
         - pytorch
         - pytorch * cuda*
       run:
