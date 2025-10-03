@@ -15,7 +15,7 @@ source:
   - path: setup.py
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
   script_env:
     # Limit MAX_JOBS in order to prevent runners from crashing
