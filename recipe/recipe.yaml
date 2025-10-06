@@ -58,6 +58,7 @@ outputs:
         - python
         - pytorch
         - pytorch * cuda*
+        - setuptools
       run:
         - einops
         - python
@@ -93,6 +94,7 @@ outputs:
         - python
         - pytorch
         - pytorch * cuda*
+        - setuptools
       run:
         - python
         - ${{ pin_subpackage('flash-attn', exact=True) }}
@@ -126,6 +128,7 @@ outputs:
         - python
         - pytorch
         - pytorch * cuda*
+        - setuptools
       run:
         - python
         - ${{ pin_subpackage('flash-attn', exact=True) }}
