@@ -24,7 +24,7 @@ build:
   # Satisfy linter by not having duplicate skip keys
   skip: true  # [cuda_compiler_version == "None" or (not linux)]
   # debugging skips below
-  # skip: true  # [py!=313]
+  skip: true  # [py!=314]
 
 requirements:
   build:
