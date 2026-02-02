@@ -27,11 +27,11 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.10.* *_cpython
+- 3.14.* *_cp314
 pytorch:
-- '2.9'
+- '2.10'
 target_platform:
-- linux-aarch64
+- linux-64
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
