@@ -23,7 +23,6 @@ build:
     - cuda_compiler_version == "None" or (not linux)
     # debugging skips below
     - match(python, "<3.14")
-    - cuda_compiler_version == "12.9"
 
 outputs:
   - staging:
