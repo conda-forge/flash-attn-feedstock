@@ -34,6 +34,12 @@ outputs:
         - ${{ compiler('cuda') }}
         - ${{ stdlib('c') }}
         - ninja
+        - if: build_platform != host_platform
+          then:
+            - python
+            - cross-python_${{ host_platform }}
+            - pytorch
+            - pytorch * cuda*
       host:
         - cuda-version ${{ cuda_compiler_version }}.* # same cuda for host and build
         - cuda-cudart-dev
