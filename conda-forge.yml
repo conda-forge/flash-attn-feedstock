@@ -2,16 +2,16 @@ build_platform:
   linux_aarch64: linux_64
 conda_build:
   error_overlinking: true
+conda_build_tool: rattler-build
 conda_forge_output_validation: true
 github:
   branch_name: main
   tooling_branch_name: main
 github_actions:
-  self_hosted: true
   timeout_minutes: 1080
   triggers:
-  - push
-  - pull_request
+    - push
+    - pull_request
 provider:
   linux_64: github_actions
   linux_aarch64: github_actions
