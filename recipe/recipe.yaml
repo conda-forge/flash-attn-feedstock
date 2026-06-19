@@ -18,7 +18,7 @@ source:
   - path: setup.py
 
 build:
-  number: 4
+  number: 5
   skip:
     - cuda_compiler_version == "None" or (not linux)
     # debugging skips below
