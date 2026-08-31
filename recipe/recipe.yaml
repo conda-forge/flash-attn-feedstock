@@ -90,10 +90,10 @@ requirements:
 tests:
   - package_contents:
       files:
-        - lib/python*/site-packages/flash_attn_3/__init__.py
-        - lib/python*/site-packages/flash_attn_3/_C*.so
-        - lib/python*/site-packages/flash_attn_config.py
-        - lib/python*/site-packages/flash_attn_interface.py
+        - site-packages/flash_attn_3/__init__.py
+        - site-packages/flash_attn_3/_C*.so
+        - site-packages/flash_attn_config.py
+        - site-packages/flash_attn_interface.py
   # Cross-built AArch64 Python cannot execute on the x86_64 runner.
   - if: build_platform == target_platform
     then:
