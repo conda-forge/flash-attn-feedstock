@@ -88,9 +88,9 @@ outputs:
         - pytorch * cuda*
     tests:
       - package_contents:
-          site_packages:
-            - flash_attn/__init__.py
-            - flash_attn_2_cuda*.so
+          files:
+            - lib/python*/site-packages/flash_attn/__init__.py
+            - lib/python*/site-packages/flash_attn_2_cuda*.so
       # Cross-built AArch64 Python cannot execute on the x86_64 runner.
       - if: build_platform == target_platform
         then:
@@ -123,8 +123,8 @@ outputs:
         - ${{ pin_subpackage('flash-attn', exact=True) }}
     tests:
       - package_contents:
-          site_packages:
-            - fused_dense_lib*.so
+          files:
+            - lib/python*/site-packages/fused_dense_lib*.so
       - if: build_platform == target_platform
         then:
           - python:
@@ -155,8 +155,8 @@ outputs:
         - ${{ pin_subpackage('flash-attn', exact=True) }}
     tests:
       - package_contents:
-          site_packages:
-            - dropout_layer_norm*.so
+          files:
+            - lib/python*/site-packages/dropout_layer_norm*.so
       - if: build_platform == target_platform
         then:
           - python:
