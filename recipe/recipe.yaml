@@ -107,6 +107,17 @@ tests:
           python_version:
             - ${{ python_min }}.*
             - "*"
+      - files:
+          recipe:
+            - test_coinstall.py
+        requirements:
+          run:
+            - flash-attn >=2,<3
+            - pip
+            - python ${{ python_min }}.*
+        script:
+          - python test_coinstall.py
+          - pip check
 
 about:
   homepage: https://github.com/Dao-AILab/flash-attention
