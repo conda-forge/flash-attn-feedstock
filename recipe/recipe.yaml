@@ -40,7 +40,8 @@ build:
       FLASH_ATTENTION_FORCE_BUILD: "TRUE"
       FLASH_ATTENTION_OFFLINE_BUILD: "TRUE"
       # This feedstock uses a 32 GiB Blacksmith runner. Four concurrent nvcc
-      # jobs match the existing FlashAttention build while staying within memory.
+      # jobs match the existing FlashAttention build; build.sh further limits
+      # CUDA 13 on AArch64 after repeated runner loss under this concurrency.
       MAX_JOBS: "4"
       NVCC_THREADS: "1"
     file: build.sh
