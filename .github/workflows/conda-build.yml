@@ -143,7 +143,7 @@ jobs:
             runs_on: ['blacksmith-8vcpu-ubuntu-2404']
             tools_install_dir: ~/miniforge3
           - CONFIG: linux_aarch64_c_compiler_version14c_stdlib_version2.17cuda_compiler_version12.9cxx_compiler_version14python3.10.____cpython
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma10
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
             build_workspace_dir: build_artifacts
@@ -155,7 +155,7 @@ jobs:
             runs_on: ['blacksmith-8vcpu-ubuntu-2404-arm']
             tools_install_dir: ~/miniforge3
           - CONFIG: linux_aarch64_c_compiler_version14c_stdlib_version2.17cuda_compiler_version12.9cxx_compiler_version14python3.11.____cpython
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma10
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
             build_workspace_dir: build_artifacts
@@ -167,7 +167,7 @@ jobs:
             runs_on: ['blacksmith-8vcpu-ubuntu-2404-arm']
             tools_install_dir: ~/miniforge3
           - CONFIG: linux_aarch64_c_compiler_version14c_stdlib_version2.17cuda_compiler_version12.9cxx_compiler_version14python3.12.____cpython
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma10
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
             build_workspace_dir: build_artifacts
@@ -179,7 +179,7 @@ jobs:
             runs_on: ['blacksmith-8vcpu-ubuntu-2404-arm']
             tools_install_dir: ~/miniforge3
           - CONFIG: linux_aarch64_c_compiler_version14c_stdlib_version2.17cuda_compiler_version12.9cxx_compiler_version14python3.13.____cp313
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma10
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
             build_workspace_dir: build_artifacts
@@ -191,7 +191,7 @@ jobs:
             runs_on: ['blacksmith-8vcpu-ubuntu-2404-arm']
             tools_install_dir: ~/miniforge3
           - CONFIG: linux_aarch64_c_compiler_version14c_stdlib_version2.17cuda_compiler_version12.9cxx_compiler_version14python3.14.____cp314
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma10
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
             build_workspace_dir: build_artifacts
@@ -203,7 +203,7 @@ jobs:
             runs_on: ['blacksmith-8vcpu-ubuntu-2404-arm']
             tools_install_dir: ~/miniforge3
           - CONFIG: linux_aarch64_c_compiler_version15c_stdlib_version2.28cuda_compiler_version13.0cxx_compiler_version15python3.10.____cpython
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma10
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
             build_workspace_dir: build_artifacts
@@ -215,7 +215,7 @@ jobs:
             runs_on: ['blacksmith-8vcpu-ubuntu-2404-arm']
             tools_install_dir: ~/miniforge3
           - CONFIG: linux_aarch64_c_compiler_version15c_stdlib_version2.28cuda_compiler_version13.0cxx_compiler_version15python3.11.____cpython
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma10
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
             build_workspace_dir: build_artifacts
@@ -227,7 +227,7 @@ jobs:
             runs_on: ['blacksmith-8vcpu-ubuntu-2404-arm']
             tools_install_dir: ~/miniforge3
           - CONFIG: linux_aarch64_c_compiler_version15c_stdlib_version2.28cuda_compiler_version13.0cxx_compiler_version15python3.12.____cpython
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma10
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
             build_workspace_dir: build_artifacts
@@ -239,7 +239,7 @@ jobs:
             runs_on: ['blacksmith-8vcpu-ubuntu-2404-arm']
             tools_install_dir: ~/miniforge3
           - CONFIG: linux_aarch64_c_compiler_version15c_stdlib_version2.28cuda_compiler_version13.0cxx_compiler_version15python3.13.____cp313
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma10
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
             build_workspace_dir: build_artifacts
@@ -251,7 +251,7 @@ jobs:
             runs_on: ['blacksmith-8vcpu-ubuntu-2404-arm']
             tools_install_dir: ~/miniforge3
           - CONFIG: linux_aarch64_c_compiler_version15c_stdlib_version2.28cuda_compiler_version13.0cxx_compiler_version15python3.14.____cp314
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma10
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
             build_workspace_dir: build_artifacts
