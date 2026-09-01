@@ -35,6 +35,7 @@ outputs:
         - ${{ compiler('cuda') }}
         - ${{ stdlib('c') }}
         - ninja
+        - patchelf
         - if: build_platform != host_platform
           then:
             - python
