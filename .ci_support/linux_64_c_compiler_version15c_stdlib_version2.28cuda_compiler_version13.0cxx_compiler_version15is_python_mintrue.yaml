@@ -21,13 +21,13 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-x86_64:alma10
 github_actions_labels:
-- blacksmith-8vcpu-ubuntu-2404
+- depot-ubuntu-24.04-16
 is_abi3:
 - true
 is_python_min:
 - true
 python_min:
-- '3.10'
+- '3.11'
 pytorch:
 - '2.12'
 target_platform:

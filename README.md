@@ -1,7 +1,7 @@
 About flash-attn-feedstock
 ==========================
 
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/flash-attn-feedstock/blob/v3.x/LICENSE.txt)
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/flash-attn-feedstock-pr53-live-feedstock/blob/v3.x/LICENSE.txt)
 
 Home: https://github.com/Dao-AILab/flash-attention
 
@@ -18,8 +18,8 @@ Current build status
 <table><tr>
     <td>GitHub Actions</td>
     <td>
-      <a href="https://github.com/conda-forge/flash-attn-feedstock/actions/workflows/conda-build.yml">
-        <img src="https://github.com/conda-forge/flash-attn-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=v3.x">
+      <a href="https://github.com/conda-forge/flash-attn-feedstock-pr53-live-feedstock/actions/workflows/conda-build.yml">
+        <img src="https://github.com/conda-forge/flash-attn-feedstock-pr53-live-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=v3.x">
       </a>
     </td>
   </tr>
