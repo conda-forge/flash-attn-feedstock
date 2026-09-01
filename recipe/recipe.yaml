@@ -33,8 +33,9 @@ build:
     - not linux or cuda_compiler_version == "None"
     - is_abi3 and not is_python_min
   string: ${{ cuda_build_string }}_py${{ python_min | version_to_buildstring }}h${{ hash }}_${{ build_number }}
+  # hopper/setup.py builds _C with Py_LIMITED_API and py_limited_api=True.
   python:
-    version_independent: true
+    version_independent: ${{ is_abi3 }}
   script:
     env:
       FLASH_ATTENTION_FORCE_BUILD: "TRUE"
@@ -57,34 +58,28 @@ requirements:
         - cross-python_${{ host_platform }}
         - pytorch
         - pytorch * cuda*
-    - if: linux and cuda_compiler_version != "None"
-      then:
-        - ${{ compiler('cuda') }}
-        - cuda-version ==${{ cuda_compiler_version }}
+    - ${{ compiler('cuda') }}
   host:
     - packaging
     - pip
+    - if: is_abi3
+      then: python-abi3
+    # Keep the build interpreter at the advertised ABI floor. PyTorch's
+    # dependency constraints can otherwise make the solver choose a newer one.
     - python ${{ python_min }}.*
     - pytorch
     - setuptools
     - wheel
-    - if: linux and cuda_compiler_version != "None"
-      then:
-        - cuda-version ==${{ cuda_compiler_version }}
-        - cuda-driver-dev
-        - cuda-cudart-dev
-        - libcublas-dev
-        - libcusolver-dev
-        - libcusparse-dev
-        - pytorch * cuda*
-  run:
-    - python >=${{ python_min }}
+    - cuda-version ==${{ cuda_compiler_version }}
+    - cuda-driver-dev
+    - cuda-cudart-dev
+    - libcublas-dev
+    - libcusolver-dev
+    - libcusparse-dev
     - pytorch * cuda*
-  ignore_run_exports:
-    from_package:
-      - libcublas-dev
-      - libcusolver-dev
-      - libcusparse-dev
+  run:
+    - python
+    - pytorch * cuda*
 
 tests:
   - package_contents:
@@ -105,8 +100,16 @@ tests:
             - flash_attn_interface
           pip_check: true
           python_version:
-            - ${{ python_min }}.*
+            - if: is_abi3
+              then: ${{ python_min }}.*
             - "*"
+      - if: is_abi3
+        then:
+          requirements:
+            run:
+              - abi3audit
+          script:
+            - abi3audit $SP_DIR/flash_attn_3/_C.abi3.so -s -v --assume-minimum-abi3 ${{ python_min }}
       - files:
           recipe:
             - test_coinstall.py
