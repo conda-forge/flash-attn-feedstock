@@ -1,2 +1,4 @@
-github_actions_labels: # [linux]
-  - blacksmith-8vcpu-ubuntu-2404 # [linux]
+# https://conda-forge.org/docs/reference/runners/
+github_actions_labels:       # [linux]
+- depot-ubuntu-24.04-16      # [linux and x86_64]
+- depot-ubuntu-24.04-arm-16  # [linux and aarch64]

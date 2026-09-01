@@ -18,7 +18,7 @@ source:
   - path: setup.py
 
 build:
-  number: 5
+  number: 6
   skip:
     - cuda_compiler_version == "None" or (not linux)
     # debugging skips below
@@ -35,6 +35,7 @@ outputs:
         - ${{ compiler('cuda') }}
         - ${{ stdlib('c') }}
         - ninja
+        - patchelf
         - if: build_platform != host_platform
           then:
             - python
@@ -57,7 +58,7 @@ outputs:
       script:
         env:
           # Limit MAX_JOBS in order to prevent runners from crashing
-          MAX_JOBS: "4"
+          MAX_JOBS: "8"
           TORCH_CUDA_ARCH_LIST: 8.0;8.6;8.9;9.0;10.0;12.0+PTX
         file: build.sh
 
@@ -87,10 +88,17 @@ outputs:
         - python
         - pytorch * cuda*
     tests:
-      - python:
-          imports:
-            - flash_attn
-          pip_check: true
+      - package_contents:
+          files:
+            - lib/python*/site-packages/flash_attn/__init__.py
+            - lib/python*/site-packages/flash_attn_2_cuda*.so
+      # Cross-built AArch64 Python cannot execute on the x86_64 runner.
+      - if: build_platform == target_platform
+        then:
+          - python:
+              imports:
+                - flash_attn
+              pip_check: true
 
   - package:
       name: flash-attn-fused-dense
@@ -115,10 +123,15 @@ outputs:
         - python
         - ${{ pin_subpackage('flash-attn', exact=True) }}
     tests:
-      - python:
-          imports:
-            - flash_attn.ops.fused_dense
-          pip_check: true
+      - package_contents:
+          files:
+            - lib/python*/site-packages/fused_dense_lib*.so
+      - if: build_platform == target_platform
+        then:
+          - python:
+              imports:
+                - flash_attn.ops.fused_dense
+              pip_check: true
 
   - package:
       name: flash-attn-layer-norm
@@ -142,10 +155,15 @@ outputs:
         - python
         - ${{ pin_subpackage('flash-attn', exact=True) }}
     tests:
-      - python:
-          imports:
-            - flash_attn.ops.layer_norm
-          pip_check: true
+      - package_contents:
+          files:
+            - lib/python*/site-packages/dropout_layer_norm*.so
+      - if: build_platform == target_platform
+        then:
+          - python:
+              imports:
+                - flash_attn.ops.layer_norm
+              pip_check: true
 
 about:
   homepage: https://github.com/Dao-AILab/flash-attention
