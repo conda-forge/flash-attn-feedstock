@@ -73,9 +73,6 @@ requirements:
     - cuda-version ==${{ cuda_compiler_version }}
     - cuda-driver-dev
     - cuda-cudart-dev
-    - libcublas-dev
-    - libcusolver-dev
-    - libcusparse-dev
     - pytorch * cuda*
   run:
     - python
