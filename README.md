@@ -191,5 +191,6 @@ Feedstock Maintainers
 =====================
 
 * [@carterbox](https://github.com/carterbox/)
+* [@jeongseok-meta](https://github.com/jeongseok-meta/)
 * [@weiji14](https://github.com/weiji14/)
 
