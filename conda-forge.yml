@@ -1,3 +1,6 @@
+bot:
+  abi_migration_branches:
+  - "v3.x"
 conda_build:
   error_overlinking: true
 conda_build_tool: rattler-build
