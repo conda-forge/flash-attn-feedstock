@@ -2,4 +2,4 @@
 
 set -euxo pipefail
 
-"${PYTHON}" -m pip install ./hopper -vv --no-deps --no-build-isolation
+"${PYTHON}" -m pip install ./hopper -v --no-deps --no-build-isolation

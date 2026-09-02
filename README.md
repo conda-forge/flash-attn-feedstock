@@ -7,9 +7,11 @@ Home: https://github.com/Dao-AILab/flash-attention
 
 Package license: BSD-3-Clause
 
-Summary: FlashAttention-3 CUDA kernels for fast and memory-efficient attention
+Summary: FlashAttention-3 CUDA kernels optimized for NVIDIA Hopper GPUs
 
 Development: https://github.com/Dao-AILab/flash-attention
+
+FlashAttention-3 provides fast and memory-efficient attention kernels for NVIDIA Hopper GPUs. Upstream officially supports H100 and H800 GPUs.
 
 Current build status
 ====================

@@ -21,6 +21,8 @@ source:
     patches:
       - 0001-respect-offline-builds.patch
       - 0002-trim-runtime-requirements.patch
+      # Remove once upstream makes per-kernel resource logging opt-in.
+      - 0003-reduce-compiler-logging.patch
   - url: https://github.com/NVIDIA/cutlass/archive/${{ cutlass_rev }}.tar.gz
     sha256: 12baa9c2bf22eaca065b5e55387c21bb4ac742992a6ecd2dd1d3b016dfd25a0a
     target_directory: csrc/cutlass
@@ -122,7 +124,10 @@ tests:
 about:
   homepage: https://github.com/Dao-AILab/flash-attention
   repository: https://github.com/Dao-AILab/flash-attention
-  summary: FlashAttention-3 CUDA kernels for fast and memory-efficient attention
+  summary: FlashAttention-3 CUDA kernels optimized for NVIDIA Hopper GPUs
+  description: >-
+    FlashAttention-3 provides fast and memory-efficient attention kernels for
+    NVIDIA Hopper GPUs. Upstream officially supports H100 and H800 GPUs.
   license: BSD-3-Clause
   license_file:
     - LICENSE
