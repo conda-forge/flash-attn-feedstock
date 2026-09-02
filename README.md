@@ -1,13 +1,17 @@
 About flash-attn-feedstock
 ==========================
 
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/flash-attn-feedstock/blob/main/LICENSE.txt)
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/flash-attn-feedstock-pr53-live-feedstock/blob/v3.x/LICENSE.txt)
 
 Home: https://github.com/Dao-AILab/flash-attention
 
 Package license: BSD-3-Clause
 
-Summary: Flash Attention: Fast and Memory-Efficient Exact Attention
+Summary: FlashAttention-3 CUDA kernels optimized for NVIDIA Hopper GPUs
+
+Development: https://github.com/Dao-AILab/flash-attention
+
+FlashAttention-3 provides fast and memory-efficient attention kernels for NVIDIA Hopper GPUs. Upstream officially supports H100 and H800 GPUs.
 
 Current build status
 ====================
@@ -16,8 +20,8 @@ Current build status
 <table><tr>
     <td>GitHub Actions</td>
     <td>
-      <a href="https://github.com/conda-forge/flash-attn-feedstock/actions/workflows/conda-build.yml">
-        <img src="https://github.com/conda-forge/flash-attn-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=main">
+      <a href="https://github.com/conda-forge/flash-attn-feedstock-pr53-live-feedstock/actions/workflows/conda-build.yml">
+        <img src="https://github.com/conda-forge/flash-attn-feedstock-pr53-live-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=v3.x">
       </a>
     </td>
   </tr>
@@ -28,9 +32,7 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-flash--attn-green.svg)](https://anaconda.org/conda-forge/flash-attn) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/flash-attn.svg)](https://anaconda.org/conda-forge/flash-attn) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/flash-attn.svg)](https://anaconda.org/conda-forge/flash-attn) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/flash-attn.svg)](https://anaconda.org/conda-forge/flash-attn) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-flash--attn--fused--dense-green.svg)](https://anaconda.org/conda-forge/flash-attn-fused-dense) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/flash-attn-fused-dense.svg)](https://anaconda.org/conda-forge/flash-attn-fused-dense) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/flash-attn-fused-dense.svg)](https://anaconda.org/conda-forge/flash-attn-fused-dense) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/flash-attn-fused-dense.svg)](https://anaconda.org/conda-forge/flash-attn-fused-dense) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-flash--attn--layer--norm-green.svg)](https://anaconda.org/conda-forge/flash-attn-layer-norm) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/flash-attn-layer-norm.svg)](https://anaconda.org/conda-forge/flash-attn-layer-norm) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/flash-attn-layer-norm.svg)](https://anaconda.org/conda-forge/flash-attn-layer-norm) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/flash-attn-layer-norm.svg)](https://anaconda.org/conda-forge/flash-attn-layer-norm) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-flash--attn--3-green.svg)](https://anaconda.org/conda-forge/flash-attn-3) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/flash-attn-3.svg)](https://anaconda.org/conda-forge/flash-attn-3) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/flash-attn-3.svg)](https://anaconda.org/conda-forge/flash-attn-3) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/flash-attn-3.svg)](https://anaconda.org/conda-forge/flash-attn-3) |
 
 Installing flash-attn
 =====================
@@ -42,42 +44,86 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `flash-attn, flash-attn-fused-dense, flash-attn-layer-norm` can be installed with `conda`:
+How to use
+----------
+
+<details>
+<summary>With conda</summary>
 
 ```
-conda install flash-attn flash-attn-fused-dense flash-attn-layer-norm
+conda install flash-attn-3
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
-mamba install flash-attn flash-attn-fused-dense flash-attn-layer-norm
+mamba install flash-attn-3
 ```
 
-It is possible to list all of the versions of `flash-attn` available on your platform with `conda`:
+</details>
+
+<details>
+<summary>With pixi</summary>
 
 ```
-conda search flash-attn --channel conda-forge
+# for adding to your local project
+pixi add flash-attn-3
+# for installing globally
+pixi global install flash-attn-3
 ```
 
-or with `mamba`:
+</details>
+
+Search package versions
+-----------------------
+
+It is possible to list all of the versions of `flash-attn-3` available on your platform:
+
+<details>
+<summary>With conda</summary>
 
 ```
-mamba search flash-attn --channel conda-forge
+conda search flash-attn-3 --channel conda-forge
 ```
 
-Alternatively, `mamba repoquery` may provide more information:
+</details>
+
+<details>
+<summary>With mamba</summary>
+
+```
+mamba search flash-attn-3 --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+pixi search flash-attn-3 --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With mamba repoquery, which may provide more information</summary>
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search flash-attn --channel conda-forge
+mamba repoquery search flash-attn-3 --channel conda-forge
 
-# List packages depending on `flash-attn`:
-mamba repoquery whoneeds flash-attn --channel conda-forge
+# List packages depending on `flash-attn-3`:
+mamba repoquery whoneeds flash-attn-3 --channel conda-forge
 
-# List dependencies of `flash-attn`:
-mamba repoquery depends flash-attn --channel conda-forge
+# List dependencies of `flash-attn-3`:
+mamba repoquery depends flash-attn-3 --channel conda-forge
 ```
+
+</details>
 
 
 About conda-forge
@@ -147,5 +193,6 @@ Feedstock Maintainers
 =====================
 
 * [@carterbox](https://github.com/carterbox/)
+* [@jeongseok-meta](https://github.com/jeongseok-meta/)
 * [@weiji14](https://github.com/weiji14/)
 
