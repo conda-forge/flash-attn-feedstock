@@ -44,7 +44,7 @@ build:
       FLASH_ATTENTION_OFFLINE_BUILD: "TRUE"
       # Keep compilation below the runner's full CPU count to leave memory
       # headroom for the large CUDA translation units.
-      MAX_JOBS: "4"
+      MAX_JOBS: "8"
       NVCC_THREADS: "1"
     file: build.sh
 
