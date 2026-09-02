@@ -177,4 +177,5 @@ extra:
   feedstock-name: flash-attn
   recipe-maintainers:
     - carterbox
+    - jeongseok-meta
     - weiji14
