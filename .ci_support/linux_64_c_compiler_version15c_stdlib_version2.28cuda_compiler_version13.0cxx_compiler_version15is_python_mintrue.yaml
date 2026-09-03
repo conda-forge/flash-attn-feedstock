@@ -29,7 +29,7 @@ is_python_min:
 python_min:
 - '3.11'
 pytorch:
-- '2.12'
+- '2.13'
 target_platform:
 - linux-64
 zip_keys:
