@@ -13,7 +13,7 @@ channel_targets:
 cuda_compiler:
 - cuda-nvcc
 cuda_compiler_version:
-- '13.0'
+- '13.4'
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -29,7 +29,7 @@ is_python_min:
 python_min:
 - '3.11'
 pytorch:
-- '2.13'
+- '2.14'
 target_platform:
 - linux-aarch64
 zip_keys:
