@@ -34,7 +34,7 @@ jobs:
             resize_partitions: False
             runs_on: ['depot-ubuntu-24.04-16']
             tools_install_dir: ~/miniforge3
-          - CONFIG: linux_64_c_compiler_version15c_stdlib_version2.28cuda_compiler_version13.0cxx_compiler_version15is_python_mintrue
+          - CONFIG: linux_64_c_compiler_version15c_stdlib_version2.28cuda_compiler_version13.4cxx_compiler_version15is_python_mintrue
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
@@ -58,7 +58,7 @@ jobs:
             resize_partitions: False
             runs_on: ['depot-ubuntu-24.04-arm-16']
             tools_install_dir: ~/miniforge3
-          - CONFIG: linux_aarch64_c_compiler_version15c_stdlib_version2.28cuda_compiler_version13.0cxx_compiler_version15is_python_mintrue
+          - CONFIG: linux_aarch64_c_compiler_version15c_stdlib_version2.28cuda_compiler_version13.4cxx_compiler_version15is_python_mintrue
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma10
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
@@ -80,6 +80,8 @@ jobs:
       run: |
         if [[ "$(uname -m)" == "x86_64" ]]; then
           docker run --rm --privileged multiarch/qemu-user-static:register --reset --credential yes
+        elif [[ "$(uname -m)" == "aarch64" ]]; then
+          docker run --rm --privileged --entrypoint /opt/docker/bin/register-binfmt ${{ matrix.DOCKER_IMAGE }} aarch64
         fi
 
     - name: Build on Linux
